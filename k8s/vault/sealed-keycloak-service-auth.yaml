@@ -1,0 +1,15 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: keycloak-service-auth-secret
+  namespace: app
+spec:
+  encryptedData:
+    client_secret: AgBlhpIi6dbUg3g5+KZ0RsH8Eu9cLvA0sE8hLbTRyel/coyqqIF7Sy1tBu4k5RIm0eXTIqDJU7Zw1sj4FJR2aSwfyB1qmCogAczXiufjYqnM1zZg2j3WtCkhEAdkoVIc9wWN0v03LLrkQtHTUnSowZn7xSynuhhz3NYsGjTgzILb8VIVJ5kyjAQtWyVIFVKWeSMy04Yt7pzLi8tg9v42Fe6YLSG5ayJZPpSygd5kBP/jKjLlHk0iRVc7FOn/IIASC4wPVoZDWvqUsQbhFSQFuF0Zv/vA33iQ1GShWu0JltaHAPmoOxQNORwtasg/BIlnObZk3tHa7Cg95IfpoMmSEQnEa7VziPwde1xxg2fjzb9Kt/gmAawlY2NnX+Ch7Bq8iWF9dOVNQlJSReklLHriPSdmOIvsbKRXTDfoVmxIKXTb2xlGAh0RhKQD6N/00+eWIJh7PisBHUnB8sx+FvaMNfb4rqLWBWFogj5iXJV1ceP0PnwOg29347irWDkMw83EE4WxJjoacOUw1Nnt7YNJjR3sh8fEIlmKmf+Y4J5UitWUCShHzMPoamdLYsL1PeitvqWMcfqYrzjbcj7CD+wyHttSRjGT2wEv8//JLRrqAZ+5wzIO1QeFSmBX0bN3ae8p0qtrGguM0WkmWP0eTsg1rZ1oLuAMP364jMdXhNXH9r8UrmmNg69z1PwG4aVO6641ImImDP/etDF0Uh+TLFoLb+CLDKX8yP+v0y8=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: keycloak-service-auth-secret
+      namespace: app

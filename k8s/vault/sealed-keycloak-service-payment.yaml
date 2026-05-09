@@ -1,0 +1,15 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: keycloak-service-payment-secret
+  namespace: app
+spec:
+  encryptedData:
+    client_secret: AgAoop7ATQ24m0BO5Bs2DCZy6v5ia/eGOos6j2E3GS5t/MXC4TsnBj7qR6mmJUXg6D2OQytu9at6qlt0ATK9aygI1iOHDWmeJE3IWhEeOnciy3DNw2frYWvgTD+RJBDxoA4TUJrxoLb3f44jUwUCkNYJcqxpYexRzytwbP2HX2e26QyvTX8b4ibePWojrzNuHJoK06fSva8irl22ylzTDSC4ggfI1eq51GGB//eCBeOT04KEfSwK6nEPFrg650G7ITzu4uGHC8MCRVFbugvbdKC1I2IEikU0Lt9hrnYF3tVx0FUbAYkpIkf7iPy3oyee2X59tzuGEF2GAraAXLg52s2QxbdfPUfmrsXO7nKQ3R7JcVUOc1uGMSEwKfRU7njFWHEyDpnvXzrGw54LwB+xuEcdam1r3SlLcq8xyBajS0YgI1BBEosbXQWeuImt2oLeLCQ33jKcjZJn2/Q9Ng28WA1FUxukSNKcR/XZGgNKM5s1iOaSE7LLpgypYH4SLNAwpPqhhpANa/Tkyjx8Le7/mi2ecteOhK0BGWxFl+zv+sZoahvnXfh1N6pciZHGXyxO46geuqXva+titEVGutj6GCgGFyCXJa3m/QZi9ipvi9wY18auZnhXQC7eesxAzvr7j5AlFz3WBWhIn1wFbL+l7OgKxaUW+qArrkhycJnH5A9MF6KhZ0ArNJvMkZncHIesLSJFYTeBvY+m3tmKkvnQlqYoYr3rIzyvcxRqvz4=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: keycloak-service-payment-secret
+      namespace: app

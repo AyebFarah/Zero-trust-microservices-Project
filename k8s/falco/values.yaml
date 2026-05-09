@@ -1,0 +1,74 @@
+driver:
+  kind: modern_ebpf
+
+falco:
+  grpc:
+    enabled: false
+  grpc_output:
+    enabled: false
+  json_output: true
+  json_include_output_property: true
+  log_stderr: true
+  log_syslog: false
+  log_level: info
+  priority: debug
+
+customRules:
+  custom-rules.yaml: |
+    - list: our_services
+      items: [service-auth, service-orders, service-payment, service-notification]
+
+    - macro: our_container
+      condition: >
+        container and container.name in (our_services)
+
+    - rule: Shell in microservice container
+      desc: Shell ouvert dans un microservice
+      condition: >
+        spawned_process and our_container and
+        proc.name in (bash, sh, zsh, dash, fish, ash)
+      output: "Shell detecte dans %container.name (user=%user.name cmd=%proc.cmdline)"
+      priority: CRITICAL
+      tags: [security, intrusion, shell]
+
+    - rule: Sensitive file read in microservice
+      desc: Lecture fichier sensible
+      condition: >
+        open_read and our_container and
+        fd.name in (/etc/shadow, /etc/passwd, /root/.ssh/id_rsa)
+      output: "Fichier sensible lu: %fd.name dans %container.name"
+      priority: ERROR
+      tags: [security, data-exfiltration]
+
+    - rule: Root process in microservice
+      desc: Processus root dans conteneur
+      condition: >
+        spawned_process and our_container and
+        user.uid = 0 and
+        not proc.name in (python, python3, uvicorn, node, npm)
+      output: "Processus root inattendu: %proc.name dans %container.name (uid=%user.uid)"
+      priority: WARNING
+      tags: [security, privilege-escalation]
+
+    - rule: Write to system directory
+      desc: Ecriture dans repertoire systeme
+      condition: >
+        open_write and our_container and
+        fd.directory in (/bin, /usr/bin, /sbin, /usr/sbin, /lib, /usr/lib)
+      output: "Ecriture systeme: %fd.name dans %container.name"
+      priority: CRITICAL
+      tags: [security, tampering]
+
+falcoctl:
+  artifact:
+    install:
+      refs:
+        - falco-rules:3
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 1000m
+    memory: 512Mi

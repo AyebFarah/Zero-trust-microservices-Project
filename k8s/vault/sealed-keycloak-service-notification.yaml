@@ -1,0 +1,15 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: keycloak-service-notification-secret
+  namespace: app
+spec:
+  encryptedData:
+    client_secret: AgBuAp4LJWAjDPVTwbf1hcLM/vbp/Q2fTIbsSJ2BREQvlwrfs0969mg47IuOi0EtuO5+oK5PTZQN2WDtm1Den7JDuIFQiY1ym9xfERm589jbZglfHY0u7uJTe98/8weu1XjM3/m9GnAyY1xbnapVrjjBu9aCHJmnPHihK4Qm8mTG3x80qru05hDl68srWpFb/3siXxddB0Tx9NIj5uryFHiic4ZSlrb3ZvsaWBiqb1jppOBybO8gZMvI6qtFYAz1lswSZLbc7GjQov9OhxHtrmDVS3MLSrrH2o2i+rtwH5LnRBbaS6bCqOoL+gsti+5opKWgXRCv46Qgv7BJQp8D+GRG6yLFicH4IN3BH7g/jvzLVEXQNoxsHLlw3EF8pn0qanu4Z2yoshuIEey2Jj9JT5PEndRqGeYIO0391QeoUWIuT9PyFdgI7XkBeNsv21D+tS8c9vu4S1RyX+f1Im9rbKVFoj847zIpuY1F6g1LKrFKGIAt6WS4MJ4R9OPXmlwNXJULQNP+QcqzAUexLufasS1gn7POUo7mbkZLyM8yHkVRnLv/L6avsgwVLOa9r+vgchzWo7mtJCllKsnvTivGL+i4kZVltr21IIdfgIB68shwKNTX5pfxmombpTdBMfnYTBMBzRX/reR+omxr3fmuyWnLU1Lj+Wfv1Jyc4RJQVZ54/ZeP6ooB6WdnlCx1t8qEIqudZCYo3Xphy8zDH4ADZiHeEvTUoYgHi6HtNuTeG01wSQ==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: keycloak-service-notification-secret
+      namespace: app

@@ -1,0 +1,15 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: keycloak-service-orders-secret
+  namespace: app
+spec:
+  encryptedData:
+    client_secret: AgCnkl37khZh5aVQ4NqDfZrgH5/wdnxNquF13oeEA+e5/N1AJMGVmWqwgEWrR6tBZYeSI8ToZ+WCen5AV//AOxQsMdHK9PgDqybU5PTe3fgDjkZ1n1G8t/UeXxBRMp67puLNSyxUwo8A1bZ+MOGPHOIQmnPPsYc/7K8i7Apcd/pn7EJAQ2m38j5q8DLl0Fnw8bieD7LBIcoUB9FjP8adwUD+DXKll3m7UxuFQWQH8+kIC83hR/jxWQJO7XGpiu5j6cUBmlT1wqtP5YbK2lJPcUH6PFhqJEtOgkfhc6qEd6lOh/sdzXct3Fm+7hLQKx7qC1OuycZZt0UN+1/2du2MpLGbGHj5wqwgSrKgUH6ENFRBZN9lLC05sz9pBx1V8jMgVqZhkCjt3JrJrt0pztgrDL1X3OUdUq+re/FA3Tz7D3P6ksY3UoIh9BivL2NERr/1pXEP9lJpco/KRWcjQOoZJ/QecD37aAQoQYy0VkqphPpMwbFLkMl6ONJp9VZyS1lgRSPRJVivLzYMj8xTbn3ax/SybT7BSoDvQHWSwdE6hbXZmmgg7jQnTfP2UqRKq3hH9YEjc13qRnSS0W+SeyhvUcm4lX+lYAfD9e7DU4faUX1fxr/vyReyNiacyeZfIjhffvzvhf2ACiBDHoS6ZfGAZVMKSGvlH3ivRAAoJYTy+7pinmt45oTlflAjmNg3i2jfGpHj5TkHnaueffKo0xbgJv44diDeSkxKCP8eUA==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: keycloak-service-orders-secret
+      namespace: app
