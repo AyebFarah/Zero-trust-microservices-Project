@@ -2,8 +2,9 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Dict, List, Optional
 from datetime import datetime, timedelta
-from prometheus_client import Gauge, make_asgi_app
+from prometheus_client import Gauge, start_http_server
 import logging
+import threading
 
 logging.basicConfig(
     level=logging.INFO,
@@ -118,9 +119,8 @@ def get_status():
     return {"services": status_list, "isolation_threshold": ISOLATION_THRESHOLD}
 
 
-metrics_app = make_asgi_app()
-app.mount("/metrics", metrics_app)
-
 if __name__ == "__main__":
     import uvicorn
+    logger.info("Démarrage serveur métriques Prometheus sur port 9091")
+    start_http_server(9091)
     uvicorn.run(app, host="0.0.0.0", port=8080)

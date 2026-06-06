@@ -12,16 +12,23 @@ falco:
   log_syslog: false
   log_level: info
   priority: debug
+  http_output:
+    enabled: true
+    url: "http://falco-falcosidekick.security.svc.cluster.local:2801"
+
+falcosidekick:
+  enabled: true
+  config:
+    prometheus:
+      port: 2810
 
 customRules:
   custom-rules.yaml: |
     - list: our_services
       items: [service-auth, service-orders, service-payment, service-notification]
-
     - macro: our_container
       condition: >
         container and container.name in (our_services)
-
     - rule: Shell in microservice container
       desc: Shell ouvert dans un microservice
       condition: >
@@ -30,7 +37,6 @@ customRules:
       output: "Shell detecte dans %container.name (user=%user.name cmd=%proc.cmdline)"
       priority: CRITICAL
       tags: [security, intrusion, shell]
-
     - rule: Sensitive file read in microservice
       desc: Lecture fichier sensible
       condition: >
@@ -39,7 +45,6 @@ customRules:
       output: "Fichier sensible lu: %fd.name dans %container.name"
       priority: ERROR
       tags: [security, data-exfiltration]
-
     - rule: Root process in microservice
       desc: Processus root dans conteneur
       condition: >
@@ -49,7 +54,6 @@ customRules:
       output: "Processus root inattendu: %proc.name dans %container.name (uid=%user.uid)"
       priority: WARNING
       tags: [security, privilege-escalation]
-
     - rule: Write to system directory
       desc: Ecriture dans repertoire systeme
       condition: >
