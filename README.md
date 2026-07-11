@@ -1,4 +1,40 @@
+## Description
+
+Zero-trust microservices on Kubernetes with multi-agent security scoring, automatic context failover, and adaptive service composition.
+
 ## Overview
+
+#### Zero-Trust Microservices — Multi-Agent Security Orchestration
+
+A zero-trust microservices platform deployed on Kubernetes, built around a multi-agent system (MAS) that continuously evaluates service security and automatically reroutes traffic when a deployment context becomes compromised.
+
+#### How it works
+
+flowchart LR
+    subgraph Security["Security signals"]
+        Istio[Istio mTLS]
+        OPA[OPA policies]
+        Falco[Falco alerts]
+        Prom[Prometheus metrics]
+    end
+
+    subgraph Agents["Multi-agent layer"]
+        LSA[LSA — Local Security Agent]
+        CCA[CCA — Central Composition Agent]
+    end
+
+    subgraph Services["Microservices (dual context)"]
+        Auth[service-auth]
+        Orders[service-orders]
+        Payment[service-payment]
+        Notif[service-notification]
+    end
+
+    Security --> LSA
+    LSA -->|security scores| CCA
+    CCA -->|failover / isolation| Services
+    CCA -->|workflow composition| Services
+
 
 
 ## Technical Stack
