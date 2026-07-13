@@ -1,0 +1,288 @@
+# service-payment ctx-a
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-payment-ctx-a
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-payment
+      context: ctx-a
+  template:
+    metadata:
+      labels:
+        app: service-payment
+        context: ctx-a
+    spec:
+      serviceAccountName: service-payment-sa
+      containers:
+      - name: service-payment
+        image: service-payment:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests: {memory: "64Mi", cpu: "100m"}
+          limits: {memory: "256Mi", cpu: "500m"}
+---
+# service-payment ctx-b
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-payment-ctx-b
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-payment
+      context: ctx-b
+  template:
+    metadata:
+      labels:
+        app: service-payment
+        context: ctx-b
+    spec:
+      serviceAccountName: service-payment-sa
+      containers:
+      - name: service-payment
+        image: service-payment:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests: {memory: "64Mi", cpu: "100m"}
+          limits: {memory: "256Mi", cpu: "500m"}
+---
+# Service payment — selector dynamique
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-payment
+  namespace: app
+spec:
+  selector:
+    app: service-payment
+    context: ctx-a
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+# service-auth ctx-a
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-auth-ctx-a
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-auth
+      context: ctx-a
+  template:
+    metadata:
+      labels:
+        app: service-auth
+        context: ctx-a
+    spec:
+      serviceAccountName: service-auth-sa
+      containers:
+      - name: service-auth
+        image: service-auth:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests: {memory: "64Mi", cpu: "100m"}
+          limits: {memory: "256Mi", cpu: "500m"}
+---
+# service-auth ctx-b
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-auth-ctx-b
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-auth
+      context: ctx-b
+  template:
+    metadata:
+      labels:
+        app: service-auth
+        context: ctx-b
+    spec:
+      serviceAccountName: service-auth-sa
+      containers:
+      - name: service-auth
+        image: service-auth:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests: {memory: "64Mi", cpu: "100m"}
+          limits: {memory: "256Mi", cpu: "500m"}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-auth
+  namespace: app
+spec:
+  selector:
+    app: service-auth
+    context: ctx-a
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+# service-orders ctx-a
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-orders-ctx-a
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-orders
+      context: ctx-a
+  template:
+    metadata:
+      labels:
+        app: service-orders
+        context: ctx-a
+    spec:
+      serviceAccountName: service-orders-sa
+      containers:
+      - name: service-orders
+        image: service-orders:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests: {memory: "64Mi", cpu: "100m"}
+          limits: {memory: "256Mi", cpu: "500m"}
+---
+# service-orders ctx-b
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-orders-ctx-b
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-orders
+      context: ctx-b
+  template:
+    metadata:
+      labels:
+        app: service-orders
+        context: ctx-b
+    spec:
+      serviceAccountName: service-orders-sa
+      containers:
+      - name: service-orders
+        image: service-orders:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests: {memory: "64Mi", cpu: "100m"}
+          limits: {memory: "256Mi", cpu: "500m"}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-orders
+  namespace: app
+spec:
+  selector:
+    app: service-orders
+    context: ctx-a
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+# service-notification ctx-a
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-notification-ctx-a
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-notification
+      context: ctx-a
+  template:
+    metadata:
+      labels:
+        app: service-notification
+        context: ctx-a
+    spec:
+      serviceAccountName: service-notification-sa
+      containers:
+      - name: service-notification
+        image: service-notification:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests: {memory: "64Mi", cpu: "100m"}
+          limits: {memory: "256Mi", cpu: "500m"}
+---
+# service-notification ctx-b
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-notification-ctx-b
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-notification
+      context: ctx-b
+  template:
+    metadata:
+      labels:
+        app: service-notification
+        context: ctx-b
+    spec:
+      serviceAccountName: service-notification-sa
+      containers:
+      - name: service-notification
+        image: service-notification:1.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        resources:
+          requests: {memory: "64Mi", cpu: "100m"}
+          limits: {memory: "256Mi", cpu: "500m"}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-notification
+  namespace: app
+spec:
+  selector:
+    app: service-notification
+    context: ctx-a
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
